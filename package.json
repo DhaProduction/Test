@@ -1,0 +1,8 @@
+{
+  "name": "rigforce",
+  "version": "1.0.0",
+  "description": "Simple web app for rigging 3D models",
+  "scripts": {
+    "test": "echo \"No tests\""
+  }
+}
