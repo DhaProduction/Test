@@ -115,20 +115,29 @@ function Studio() {
   };
 
   return (
-    <div className="h-full w-full grid grid-cols-4 gap-4 p-4">
-      <div className="col-span-1 space-y-4">
-        <input type="file" accept=".glb,.gltf" onChange={onFile} />
-        <select value={preset} onChange={e=>setPreset(e.target.value)} className="w-full text-black">
+    <div className="h-screen w-full grid grid-cols-4 gap-4 p-4 bg-zinc-900 text-white">
+      <div className="col-span-1 space-y-4 bg-zinc-800/50 p-4 rounded-lg">
+        <input
+          type="file"
+          accept=".glb,.gltf,.fbx,.obj"
+          onChange={onFile}
+          className="w-full text-sm text-white"
+        />
+        <select
+          value={preset}
+          onChange={e=>setPreset(e.target.value)}
+          className="w-full bg-zinc-700 text-white rounded p-1"
+        >
           <option value="human">Umanoide</option>
           <option value="animal">Quadrupede</option>
           <option value="bird">Uccello</option>
           <option value="robot">Robot</option>
         </select>
-        <button onClick={autoRig} className="w-full bg-emerald-500 text-black py-1 rounded">AutoRig</button>
-        <button onClick={exportJSON} className="w-full bg-zinc-700 py-1 rounded">Export JSON</button>
+        <button onClick={autoRig} className="w-full bg-emerald-500 text-black py-2 rounded">AutoRig</button>
+        <button onClick={exportJSON} className="w-full bg-zinc-700 text-white py-2 rounded">Export JSON</button>
       </div>
-      <div className="col-span-3">
-        <Canvas camera={{position:[3,3,3]}}>
+      <div className="col-span-3 h-full">
+        <Canvas className="w-full h-full rounded-lg" camera={{position:[3,3,3]}}>
           <ambientLight />
           <Suspense fallback={<Html center>Loading…</Html>}>
             {fileUrl && <GLTFModel url={fileUrl} onLoad={s=>{sceneRef.current=s}} />}
